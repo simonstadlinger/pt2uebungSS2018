@@ -1,13 +1,12 @@
-LIBARENA = libarena
 
 CC := gcc
-CFLAGS := -g -ansi -pedantic -W -Wall -std=c99 -I $(LIBARENA)
-LDLIBS := -L$(LIBARENA) -larena
+CFLAGS := -g -ansi -pedantic -W -Wall -std=c99 
 
-TARGETS := libarena.a testapp
+TARGETS := expr 
 
-libarena.a:
-	    $(MAKE) --directory=$(LIBARENA) $@
+expr: expr.c
+	$(CC) $(CFLAGS) $< -o $@
+
 
 all: $(TARGETS)
 
