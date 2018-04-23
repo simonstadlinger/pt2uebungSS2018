@@ -1,11 +1,14 @@
 #include "arena.h"
+#include "allocate.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void * allocate()
 {
+
 	int adress = 0;
 	int i = 0;
-	for(i = 0;i<sizeof(allocated_map);i++)
+	for(i = 0;i<NUM_BLOCKS;i++)
 	{
 		if((allocated_map[i]&0xFFFF)!=0xFFFF)
 		{
@@ -15,15 +18,16 @@ void * allocate()
 			for(k=15;k>=0;k--)
 			{
 				uint16_t mask = 1<<k;
-				if(allocated_map[i]&mask!=mask)
+				if((allocated_map[i]&mask)!=mask)
 				{
 					inner_adress = k;
-					allocated_map[i]|mask;
+					allocated_map[i]|=mask;
 					break;
 
 				}
 			}
 			adress = i*16*40 + inner_adress*40;
+			break;
 		}
 
 	}
