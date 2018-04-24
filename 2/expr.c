@@ -22,7 +22,7 @@ int Number_precedence()
 
 double Number_eval(void * this)
 {
-	//...
+	//Todo evtl
 	return this->val;
 }
 
