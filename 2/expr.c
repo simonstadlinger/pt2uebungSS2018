@@ -1,18 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 
 #include "expr.h"
 
-Expr* number(double v)
-{
-	ALLOCATE(Number, r);
-	r->val = v;
-	return &r->_expr;
-}
+
 
 void Number_print(void * this, FILE* f)
 {
-	//...
-	print(this->val, f);
+	
+	fprintf(f, "%f", ((Number*) this)->val);
 }
 
 int Number_precedence()
@@ -23,23 +20,28 @@ int Number_precedence()
 double Number_eval(void * this)
 {
 	//...
-	return this->val;
+	return ((Number*) this)->val;
 }
 
-Expr* plus(Expr *e1, Expr* e2)
+Expr* number(double v)
 {
-	ALLOCATE(Plus, r);
-	r->_binary.e1 = e1;
-	r->_binary.e2 = e2;
-	return &r->_binary._expr;
+	Number * r;
+	ALLOCATE(Number, r);
+	r->val = v;
+	r->_expr.print = Number_print;
+	r->_expr.eval = Number_eval;
+	r->_expr.precedence = Number_precedence;
+	return &r->_expr;
 }
+
+
 
 void Plus_print(void * this, FILE* f)
 {
 	// lowest precedence, no need to put parentheses
-	print(this->_binary.e1, f);
+	print(((Plus*) this)->_binary.e1, f);
 	fprintf(f, " + ");
-	print(this->_binary.e2, f);
+	print(((Plus*) this)->_binary.e2, f);
 }
 
 int Plus_precedence()
@@ -50,27 +52,35 @@ int Plus_precedence()
 double Plus_eval(void * this)
 {
 	//...
-	return eval(this->_binary.e1) + eval(this->_binary.e2);
+	return eval(((Plus*) this)->_binary.e1) + eval(((Plus*) this)->_binary.e2);
 }
 
-Expr* minus(Expr *e1, Expr* e2)
+Expr* plus(Expr *e1, Expr* e2)
 {
-	ALLOCATE(Minus, r);
+	Plus * r;
+	ALLOCATE(Plus, r);
 	r->_binary.e1 = e1;
 	r->_binary.e2 = e2;
+	r->_binary._expr.print = Plus_print;
+	r->_binary._expr.eval = Plus_eval;
+	r->_binary._expr.precedence = Plus_precedence;
 	return &r->_binary._expr;
 }
+
 
 void Minus_print(void * this, FILE* f)
 {
 	// second operand needs parentheses unless it has higher precedence
-	print(this->_binary.e1, f);
+	print(((Minus*) this)->_binary.e1, f);
 	fprintf(f, " - ");
-	if (this->_binary.e1.precedence() <= PREC_TERM)
+	if (((Minus*) this)->_binary.e1->precedence() <= PREC_TERM)
 	{
-		fprintf(f, "("); print(this->_binary.e2, f); fprintf(f, ")");
+		fprintf(f, "("); print(((Minus*) this)->_binary.e2, f); fprintf(f, ")");
 	}
-	print(this->_binary.e2, f);
+	else 
+	{
+		print(((Minus*) this)->_binary.e2, f);
+	}
 }
 
 int Minus_precedence()
@@ -81,23 +91,41 @@ int Minus_precedence()
 double Minus_eval(void * this)
 {
 	//...
-	return eval(this->_binary.e1) - eval(this->_binary.e2);
+	return eval(((Minus*) this)->_binary.e1) - eval(((Minus*) this)->_binary.e2);
 }
 
-Expr* times(Expr *e1, Expr* e2)
+Expr* minus(Expr *e1, Expr* e2)
 {
-	ALLOCATE(Times, r);
+	Minus * r;
+	ALLOCATE(Minus, r);
 	r->_binary.e1 = e1;
 	r->_binary.e2 = e2;
+	r->_binary._expr.print = Minus_print;
+	r->_binary._expr.eval = Minus_eval;
+	r->_binary._expr.precedence = Minus_precedence;
 	return &r->_binary._expr;
 }
 
 void Times_print(void * this, FILE* f)
 {
-	//TODO operands need parentheses if they have lower precedence
-	print(this->_binary.e1, f);
+	// operands need parentheses if they have lower precedence
+	if (((Times*) this)->_binary.e1->precedence() < PREC_FACTOR)
+	{
+		fprintf(f, "("); print(((Times*) this)->_binary.e1, f); fprintf(f, ")");
+	}
+	else
+	{
+	print(((Times*) this)->_binary.e1, f);
+	}
 	fprintf(f, " * ");
-	print(this->_binary.e2, f);
+	if (((Times*) this)->_binary.e2->precedence() < PREC_FACTOR)
+	{
+		fprintf(f, "("); print(((Times*) this)->_binary.e2, f); fprintf(f, ")");
+	}
+	else
+	{
+		print(((Times*) this)->_binary.e2, f);
+	}
 }
 
 int Times_precedence()
@@ -108,23 +136,41 @@ int Times_precedence()
 double Times_eval(void * this)
 {
 	//...
-	return eval(this->_binary.e1) * eval(this->_binary.e2);
+	return eval(((Times*) this)->_binary.e1) * eval(((Times*) this)->_binary.e2);
 }
 
-Expr* over(Expr *e1, Expr* e2)
+Expr* times(Expr *e1, Expr* e2)
 {
-	ALLOCATE(Over, r);
+	Times * r;
+	ALLOCATE(Times, r);
 	r->_binary.e1 = e1;
 	r->_binary.e2 = e2;
+	r->_binary._expr.print = Times_print;
+	r->_binary._expr.eval = Times_eval;
+	r->_binary._expr.precedence = Times_precedence;
 	return &r->_binary._expr;
 }
 
 void Over_print(void * this, FILE* f)
 {
-	//TODO second operand needs parentheses even if at same priority
-	print(this->_binary.e1, f);
+	// second operand needs parentheses even if at same priority
+	if (((Over*) this)->_binary.e1->precedence() < PREC_FACTOR)
+	{
+		fprintf(f, "("); print(((Over*) this)->_binary.e1, f); fprintf(f, ")");
+	}
+	else
+	{
+	print(((Over*) this)->_binary.e1, f);
+	}
 	fprintf(f, " / ");
-	print(this->_binary.e2, f);
+	if (((Over*) this)->_binary.e2->precedence() <= PREC_FACTOR)
+	{
+		fprintf(f, "("); print(((Over*) this)->_binary.e2, f); fprintf(f, ")");
+	}
+	else
+	{
+		print(((Over*) this)->_binary.e2, f);
+	}
 }
 
 int Over_precedence()
@@ -135,14 +181,26 @@ int Over_precedence()
 double Over_eval(void * this)
 {
 	//...
-	return eval(this->_binary.e1) / eval(this->_binary.e2);
+	return eval(((Over*) this)->_binary.e1) / eval(((Over*) this)->_binary.e2);
+}
+
+Expr* over(Expr *e1, Expr* e2)
+{
+	Over * r;
+	ALLOCATE(Over, r);
+	r->_binary.e1 = e1;
+	r->_binary.e2 = e2;
+	r->_binary._expr.print = Over_print;
+	r->_binary._expr.eval = Over_eval;
+	r->_binary._expr.precedence = Over_precedence;
+	return &r->_binary._expr;
 }
 
 int main(int argc, char *argv[])
 {
 	Expr *p = plus(number(2), times(number(4), over(number(10), number(3))));
 	print(p, stdout);
-	printf(" => %g\n", eval(p));
+	printf(" => %d\n", eval(p));
 
 /*  Für Zusatzaufgabe <string.h> einbinden und auskommentierten Code aktivieren
 	if (argc > 1 && !strcmp(argv[1], "--zusatz")) {
