@@ -19,19 +19,12 @@ int Number_precedence()
 
 double Number_eval(void * this)
 {
-<<<<<<< HEAD
-	//Todo evtl
-	return this->val;
-=======
-	//...
 	return ((Number*) this)->val;
->>>>>>> 831121d7b029840da3a07541e66af078aefe6fd5
 }
 
 Expr* number(double v)
 {
 	Number * r;
-	ALLOCATE(Number, r);
 	r->val = v;
 	r->_expr.print = Number_print;
 	r->_expr.eval = Number_eval;
