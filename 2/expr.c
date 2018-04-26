@@ -24,6 +24,7 @@ double Number_eval(void * this)
 Expr* number(double v)
 {
 	Number * r;
+	ALLOCATE(Number, r);
 	r->val = v;
 	r->_expr.print = Number_print;
 	r->_expr.eval = Number_eval;
