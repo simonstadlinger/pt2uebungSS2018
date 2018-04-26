@@ -10,7 +10,7 @@ expr: expr.c expr.h
 
 clean:
 	rm -f $(TARGETS)
-
+	rm -f abgabe.tar
 abgabe: clean
 	tar -cf $(ABGABE) --exclude $(ABGABE) --exclude expr.cpp --exclude Serie2.pdf .
 
