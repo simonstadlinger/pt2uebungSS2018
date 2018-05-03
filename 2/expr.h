@@ -6,12 +6,19 @@
 
 #define ALLOCATE(typ, p) (p = (typ*) malloc(sizeof(typ)))
 
-typedef struct expr
+typedef struct expr Expr;
+
+typedef struct 
 {
-	 void (*print) (void * this, FILE *f);
-	 double (*eval) (void * this);
-	 int (*precedence) ();
-} Expr;
+	void (*print) (Expr * this, FILE *f);
+	double (*eval) (Expr * this);
+	int (*precedence) ();
+} Expr_vtable;
+
+struct expr
+{ 
+	Expr_vtable * _vtable;
+};
 
 typedef struct binary
 {
@@ -24,7 +31,6 @@ typedef struct binary
 typedef struct number
 {
 	Expr _expr;
-
 	double val;
 
 } Number;
