@@ -48,7 +48,7 @@ public class Account {
 	public static Account find_account(Account[] liste, String login_name) {
 		
 		for (Account acc: liste) {
-			if (acc.login_name == login_name) {
+			if (acc.login_name.equals(login_name)) {
 				return acc;
 			}
 		}
