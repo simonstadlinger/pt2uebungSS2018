@@ -28,13 +28,17 @@ public class Account {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));	
 
-			String accInfo = reader.readLine();
-			System.out.println(accInfo);
+			String accInfo;
+			while(accInfo = reader.readLine()) {
+				System.out.println(accInfo);
+			}
+
+			
 
 			return null;
 		}
 		catch(IOException e) {
-  			System.out.println("ERROR: File 'passwd' wasn't found!\n");
+  			System.out.println("ERROR: File wasn't found!\n");
   			return null;
 		}
 		
