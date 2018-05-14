@@ -20,10 +20,6 @@ public class Account {
 		this.shell      = shell;
 	}
 
-	public static void main(String args[]){
-		open("passwd.txt");
-	}
-
 	public static Account[] open(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));	
@@ -38,9 +34,7 @@ public class Account {
 			for(int i = 0; i<size;i++)
 			{
 				accountset[i]= container.elementAt(i);
-			}
-			System.out.println("hallo");
-			
+			}			
 
 			return accountset;
 		}
