@@ -1,4 +1,4 @@
 package TempConv;
 public abstract class Conversion{
-	abstract double convert(double val);
+	public abstract double convert(double val);
 }
