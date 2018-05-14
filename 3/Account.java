@@ -4,8 +4,8 @@ public class Account {
 
 	public String login_name;
 	public String password;
-	public int    uid;
-	public int    gid;
+	public int uid;
+	public int gid;
 	public String user_name;
 	public String directory;
 	public String shell;
@@ -18,6 +18,10 @@ public class Account {
 		this.user_name  = user_name;
 		this.directory  = directory;
 		this.shell      = shell;
+	}
+
+	public static void main(String args[]){
+		open("passwd.txt");
 	}
 
 	public static Account[] open(String filename) {
@@ -34,7 +38,9 @@ public class Account {
 			for(int i = 0; i<size;i++)
 			{
 				accountset[i]= container.elementAt(i);
-			}			
+			}
+			System.out.println("hallo");
+			
 
 			return accountset;
 		}
@@ -45,13 +51,8 @@ public class Account {
 		
 	}
 
-	public static Account find_account(Account[] liste, String login_name) {
+	/*public static Account find_account(Account[] liste, String login_name) {
 		
-		for (Account acc: liste) {
-			if (acc.login_name == login_name) {
-				return acc;
-			}
-		}
-		return null;
-	}
+		return result;
+	}*/
 }
