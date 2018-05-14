@@ -40,8 +40,8 @@ public class Account {
 		
 	}
 
-	public static Account find_account(Account[] liste, String login_name) {
-		Account result = new Account("a", "b", 1, 2, "d", "e", "f");
+	/*public static Account find_account(Account[] liste, String login_name) {
+		
 		return result;
-	}
+	}*/
 }
