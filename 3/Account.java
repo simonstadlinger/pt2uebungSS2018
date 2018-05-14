@@ -1,5 +1,5 @@
 import java.io.*;
-
+import java.util.Vector;
 public class Account {
 
 	public String login_name;
@@ -27,15 +27,22 @@ public class Account {
 	public static Account[] open(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));	
-
+			Vector<Account> container = new Vector<Account>();	
 			String accInfo;
 			while((accInfo = reader.readLine()) != null) {
-				System.out.println(accInfo);
+				String[] dataset = accInfo.split(":");
+				container.add(new Account(dataset[0],dataset[1], Integer.parseInt(dataset[2]),Integer.parseInt(dataset[3]),dataset[4],dataset[5],dataset[6]));
 			}
-
+			int size = container.size();
+			Account[] accountset = new Account[size];
+			for(int i = 0; i<size;i++)
+			{
+				accountset[i]= container.elementAt(i);
+			}
+			System.out.println("hallo");
 			
 
-			return null;
+			return accountset;
 		}
 		catch(IOException e) {
   			System.out.println("ERROR: File wasn't found!\n");
