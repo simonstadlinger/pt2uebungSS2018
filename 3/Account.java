@@ -51,8 +51,13 @@ public class Account {
 		
 	}
 
-	/*public static Account find_account(Account[] liste, String login_name) {
+	public static Account find_account(Account[] liste, String login_name) {
 		
-		return result;
-	}*/
+		for (Account acc: liste) {
+			if (acc.login_name == login_name) {
+				return acc;
+			}
+		}
+		return null;
+	}
 }
