@@ -29,7 +29,7 @@ public class Account {
 			BufferedReader reader = new BufferedReader(new FileReader(filename));	
 
 			String accInfo;
-			while(accInfo = reader.readLine()) {
+			while((accInfo = reader.readLine()) != null) {
 				System.out.println(accInfo);
 			}
 
