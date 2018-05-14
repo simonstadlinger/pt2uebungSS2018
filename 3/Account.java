@@ -4,8 +4,8 @@ public class Account {
 
 	public String login_name;
 	public String password;
-	public int uid;
-	public int gid;
+	public int    uid;
+	public int    gid;
 	public String user_name;
 	public String directory;
 	public String shell;
