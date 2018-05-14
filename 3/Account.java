@@ -45,7 +45,6 @@ public class Account {
 			return accountset;
 		}
 		catch(IOException e) {
-  			System.out.println("ERROR: File wasn't found!\n");
   			return null;
 		}
 		
