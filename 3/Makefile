@@ -1,3 +1,3 @@
 clean:
-	rm -rf Minimum.class
+	rm -rf *.class
 	
