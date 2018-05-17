@@ -13,7 +13,7 @@ CLASSES = Account.java \
 
 all: classes
 abgabe: clean 
-	tar cfvz abgabe.tar.gz $(CLASSES) TempConv/Celsius.java TempConv/Conversion.java TempConv/Fahrenheit.java
+	tar cfvz abgabe.tar.gz $(CLASSES) In.java TempConv/Celsius.java TempConv/Conversion.java TempConv/Fahrenheit.java Makefile
 
 classes: $(CLASSES:.java=.class)
 clean:
