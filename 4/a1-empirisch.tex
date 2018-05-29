@@ -55,7 +55,7 @@
 Für jeden Wert von N haben wir 10 Messungen durchgeführt (außer für Java - time N = 1000, da die Messungen hier sehr lange gedauert haben) und des Durchschnitt berechnet (siehe anhaenge/alle\_werte.xlsx). Mit dem Durchschnitt haben wir dann die Überprüfungen für O(N), O(N$^2$) und O(N$^3$) durchgeführt. 
 \includegraphics[width=.51\textwidth]{empirischer_test.png}\\
 Java:\\
-Die Gesamtlaufzeit (Java - time) ist stark von der Java Umgebung dominiert und daher sind die hohen Werte für N besonders relevant. Letztendlich kommen wir zu dem Ergebnis O(N$^2$)\\
+Die Gesamtlaufzeit (Java - time) ist stark von der Java Umgebung dominiert und daher sind die hohen Werte für N besonders relevant. Letztendlich kommen wir zu dem Ergebnis O(N$^2$).\\
 Die Lauftzeit von mult (Java - nanoTime()) ist nicht mehr von Java Umgebung dominiert und die Werte sind erkennbar besser. Das Ergebnis O(N$^2$) ist hier deutlicher zu erkennen.\\\\
 C:\\
 Die Gesamtlaufzeit (C - time) ist von Faktoren wie der Initalisierung und Ausgabe beeinflusst weswegen die kubische Laufzeit erst bei großen N deutlich wird. Ergebnis: O(N$^3$).\\

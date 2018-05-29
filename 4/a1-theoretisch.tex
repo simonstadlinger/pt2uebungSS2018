@@ -34,6 +34,8 @@
 \cfoot{\thepage}
 \lfoot{}
 
+\usepackage{graphicx}
+
 %\pagestyle{headings}
 
 %Befehle um Kopfund Fuszeile Anzupassen:
@@ -50,5 +52,24 @@
 \begin{center}
 \LARGE{\textbf{Aufgabe 1 - theoretische Analyse}}
 \end{center}
-
+Java:\\\\
+\includegraphics[width=.7\textwidth]{java.png}\\
+\begin{align*}
+	O(k + N\cdot (N + k+ N\cdot k))&=O(1+N\cdot(N+1+N\cdot 1))\\
+	&=O(N\cdot(N+N))\\
+	&=O(N\cdot(2\cdot N))\\
+	&=O(N\cdot N)\\
+	&=O(N^2)
+\end{align*}
+\\
+C:\\\\
+\includegraphics[width=.7\textwidth]{c.png}\\
+\begin{align*}
+O(k + N\cdot N\cdot(k + N\cdot k))&=O(1 + N\cdot N\cdot(1 + N\cdot 1))\\
+&=O(N\cdot N\cdot N)\\
+&=O(N^3)
+\end{align*}
+\\
+Fazit:\\\\
+Bei der empirischen Analyse sind wir durch eine Einschätzung von Messfehlern auf die selben Ergebnisse gekommen.
 \end{document}
