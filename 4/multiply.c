@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /* Dimension of the matrices */
 #define N 10
@@ -62,13 +63,12 @@ void mult(double C[N][N], double A[N][N], double B[N][N])
 
 int main()
 {
+  clock_t start, end;
   init(A, 1);
   init(B, 2);
+  start = clock();
   mult(C, A, B);
-  printf("========== A ============\n");
-  print(A);
-  printf("========== B ============\n");
-  print(B);
-  printf("========== C ============\n");
-  print(C);
+  end = clock();
+  printf("N = %d \n", N);
+  printf("time = %d\n\n", (int) (end - start));
 }

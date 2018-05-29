@@ -66,19 +66,19 @@ class multiply{
 
     public static void main(String args[])
     {
+    long start, end;
 	// initialize three matrices
 	double[][] A,B,C;
 	A = init(1);
 	B = init(2);
 	C = init(0);
 	// multiply them
+	start = System.nanoTime();
 	mult(C, A, B);
-	// print them out
-	System.out.println("========== A ============");
-	print(A);
-	System.out.println("========== B ============");
-	print(B);
-	System.out.println("========== C ============");
-	print(C);
+	end = System.nanoTime();
+	// print the time
+	System.out.println("N = " + N);
+	System.out.println("time = " + (end - start));
+	System.out.println("");
     }
 }
