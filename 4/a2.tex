@@ -50,5 +50,30 @@
 \begin{center}
 \LARGE{\textbf{Aufgabe 2}}
 \end{center}
-
+\paragraph{a)}$O(n^2)\subseteq O(n^3)$\\
+g.z.z:
+\begin{align*}
+\forall a(n): a(n)\in O(n^2) \rightarrow a(n)\in O(n^3)
+\end{align*}
+sei 
+\begin{align*}
+&a(n)\in O(n^2)\\ &\rightarrow a(n)\leq c\cdot n^2 \\&\text{ab bestimmten n0 und mit festem c ungleich 0}\\ &\text{da } c\cdot n^2 < c\cdot n^3 (n\in N, \text{Transitivität der kleinergleich-Relation})
+\\ &\rightarrow a(n)<c\cdot n^3
+\\ &\rightarrow a(n)\in O(n^3)
+\end{align*}
+g.e.d.
+\paragraph{b)}$10\cdot n + 20 \in O(n)$ \\ g.z.z:
+\begin{align*}
+\exists c\in N, \exists n0\in N: \forall n\geq n0: 10\cdot n + 20 \leq c\cdot n
+\end{align*}
+Sei $c=11$
+\begin{align*}
+\exists n0: \forall n\geq n0: 10\cdot n +20 \leq 11\cdot n
+\end{align*}
+Dieses $n0 = 20$. Es gilt
+\begin{align*}
+\forall n\geq 20: 10\cdot n +20 \leq 11\cdot n
+\end{align*}
+q.e.d.
+\paragraph{c)} $n^{\frac{2}{3}}\notin O(n\cdot log(n))$
 \end{document}
