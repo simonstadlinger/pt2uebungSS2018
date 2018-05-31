@@ -85,7 +85,7 @@ Gut zu sehen ist dies auch in Figure 1.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[scale=.7]{a2c_plot}
-\caption{{\color{red} $h(n)=n\cdot log(n)$}, {\color{purple} $g(n)=n$}, {\color{DarkGreen} $h(n)=n^{\frac{2}{3}}$} }
+\caption{{\color{red} $h(n)=n\cdot log(n)$}, {\color{purple} $g(n)=n$}, {\color{darkgreen} $h(n)=n^{\frac{2}{3}}$} }
 \end{center}
 \end{figure}
 \end{document}
