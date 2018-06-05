@@ -55,11 +55,9 @@
 Java:\\\\
 \includegraphics[width=.7\textwidth]{java.png}\\
 \begin{align*}
-	O(k + N\cdot (N + k+ N\cdot k))&\in O(1+N\cdot(N+1+N\cdot 1))\\
-	&\in O(N\cdot(N+N))\\
-	&\in O(N\cdot(2\cdot N))\\
-	&\in O(N\cdot N)\\
-	&\in O(N^2)
+	O(k + N\cdot N\cdot(k + N\cdot k))&\in O(1 + N\cdot N\cdot(1 + N\cdot 1))\\
+	&\in O(N\cdot N\cdot N)\\
+	&\in O(N^3)
 \end{align*}
 \\
 C:\\\\
