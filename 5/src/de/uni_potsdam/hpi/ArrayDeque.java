@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class ArrayDeque implements Deque {
 	private int cap;
@@ -27,7 +28,7 @@ public class ArrayDeque implements Deque {
 	public void clear() {
 		length = 0;
 		last = first;
-		deque = [];
+		Arrays.fill(deque, null);
 	}
 
 	public void addFirst(Object e) throws DequeFull {

@@ -2,7 +2,6 @@
 public class LinkedDeque implements Deque {
 	private int cap;
 	private int length;
-	private Object[] deque;
 
 	private Item first;
 	private Item last;
@@ -40,7 +39,6 @@ public class LinkedDeque implements Deque {
 		length = 0;
 		first = null;
 		last = null;
-		deque = [];
 	}
 
 	public void addFirst(Object e) throws DequeFull {
