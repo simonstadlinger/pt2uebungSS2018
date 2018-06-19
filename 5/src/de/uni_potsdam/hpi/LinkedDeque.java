@@ -1,17 +1,29 @@
 
-public class ArrayDeque implements Deque {
+public class LinkedDeque implements Deque {
 	private int cap;
 	private int length;
 	private Object[] deque;
 
-	private int first;
-	private int last;
+	private Item first;
+	private Item last;
 
-	public ArrayDeque(int c) {
+	private class Item {
+		public Item next;
+		public Item prev;
+		public Object val;
+
+		public Item(Object e, Item n, Item p) {
+			val = e;
+			next = n;
+			prev = p;
+		}
+	}
+
+	public LinkedDeque(int c) {
 		cap = c;
 		length = 0;
-		first = 0;
-		last = 0;
+		first = null;
+		last = null;
 		deque = new Object[c];
 
 	}
@@ -26,16 +38,15 @@ public class ArrayDeque implements Deque {
 
 	public void clear() {
 		length = 0;
-		last = first;
+		first = null;
+		last = null;
 		deque = [];
 	}
 
 	public void addFirst(Object e) throws DequeFull {
 		if (length < cap) {
-			if (length != 0) {
-				first = (first - 1) % cap;
-			}
-			deque[first] = e;
+			first = new Item(e, first, null);
+			first.next.prev = first;
 			length++;
 		} else {
 			throw new DequeFull("Deque is full!");
@@ -44,10 +55,8 @@ public class ArrayDeque implements Deque {
 
 	public void addLast(Object e) throws DequeFull {
 		if (length < cap) {
-			if (length != 0) {
-				last = (last + 1) % cap;
-			}
-			deque[last] = e;
+			last = new Item(e, null, last);
+			last.prev.next = last;
 			length++;
 		} else {
 			throw new DequeFull("Deque is full!");
@@ -56,10 +65,10 @@ public class ArrayDeque implements Deque {
  
 	public Object removeFirst() throws DequeEmpty {
 		if (length > 0) {
-			Object result = deque[first];
-			deque[first] = null;
-			if (first != last) {
-				first = (first + 1) % cap;
+			Object result = first.val;
+			first = first.next;
+			if (first != null) {
+				first.prev = null;
 			}
 			length--;
 			return result;
@@ -68,13 +77,13 @@ public class ArrayDeque implements Deque {
 			return null;
 		}
 	}
- 
+
 	public Object removeLast() throws DequeEmpty {
 		if (length > 0) {
-			Object result = deque[last];
-			deque[last] = null;
-			if (last =! first) {
-				last = (last - 1) % cap;
+			Object result = last.val;
+			last = last.prev;
+			if (last != null) {
+				last.next = null;
 			}
 			length--;
 			return result;
