@@ -1,3 +1,5 @@
+package de.uni_potsdam.hpi;
+
 import java.util.Arrays;
 
 public class ArrayDeque implements Deque {
@@ -66,7 +68,6 @@ public class ArrayDeque implements Deque {
 			return result;
 		} else {
 			throw new DequeEmpty("Deque is empty!");
-			return null;
 		}
 	}
  
@@ -74,14 +75,13 @@ public class ArrayDeque implements Deque {
 		if (length > 0) {
 			Object result = deque[last];
 			deque[last] = null;
-			if (last =! first) {
+			if (last != first) {
 				last = (last - 1) % cap;
 			}
 			length--;
 			return result;
 		} else {
 			throw new DequeEmpty("Deque is empty!");
-			return null;
 		}
 	}
 

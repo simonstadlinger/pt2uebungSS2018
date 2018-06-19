@@ -83,6 +83,6 @@ public class DequeTest {
 	@After
 	public void tearDown() {
 		//removes all objects
-        q.
+        
 	}
 }

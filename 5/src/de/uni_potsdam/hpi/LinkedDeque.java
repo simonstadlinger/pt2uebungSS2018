@@ -1,3 +1,4 @@
+package de.uni_potsdam.hpi;
 
 public class LinkedDeque implements Deque {
 	private int cap;
@@ -23,7 +24,6 @@ public class LinkedDeque implements Deque {
 		length = 0;
 		first = null;
 		last = null;
-		deque = new Object[c];
 
 	}
 
@@ -72,7 +72,6 @@ public class LinkedDeque implements Deque {
 			return result;
 		} else {
 			throw new DequeEmpty("Deque is empty!");
-			return null;
 		}
 	}
 
@@ -87,7 +86,6 @@ public class LinkedDeque implements Deque {
 			return result;
 		} else {
 			throw new DequeEmpty("Deque is empty!");
-			return null;
 		}
 	}
 
