@@ -34,6 +34,7 @@ public class ArrayDeque implements Deque {
 
 	public void clear() {
 		length = 0;
+		last = first;
 		deque = [];
 	}
 
@@ -64,6 +65,7 @@ public class ArrayDeque implements Deque {
 	public Object removeFirst() throws DequeEmpty {
 		if (length > 0) {
 			Object result = deque[first];
+			deque[first] = null;
 			if (first != last) {
 				first = (first + 1) % cap;
 			}
@@ -78,6 +80,7 @@ public class ArrayDeque implements Deque {
 	public Object removeLast() throws DequeEmpty {
 		if (length > 0) {
 			Object result = deque[last];
+			deque[last] = null;
 			if (last =! first) {
 				last = (last - 1) % cap;
 			}
