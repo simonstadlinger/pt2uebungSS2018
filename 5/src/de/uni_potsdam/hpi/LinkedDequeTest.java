@@ -9,7 +9,7 @@ public class LinkedDequeTest {
 	LinkedDeque fullDeque;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		//leere Deque
         emptyDeque = new LinkedDeque(10);
 

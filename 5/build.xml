@@ -14,7 +14,6 @@
     <junit haltonfailure="yes">
       <classpath path="${destdir}" />
       <formatter type="brief" usefile="false" />
-      <test name="de.uni_potsdam.hpi.ArrayDequeTest" />
       <test name="de.uni_potsdam.hpi.LinkedDequeTest" />
     </junit>
   </target>
