@@ -1,20 +1,23 @@
-import static org.junit.Assert.*
-import org.junit.*
+import static org.junit.Assert.*;
+import org.junit.*;
+import java.lang.*;
 
 public class DequeTest {
 
 	@Before
 	public void setUp() {
 		//leere Deque
-
+        Deque q = new Deque();
 		//Deque mit 7 Elementen
 
 		//volle Deque
 	}
 
 	@Test
-	public void testA() {
-		//Für eine leere Deque q gilt nach q.addLast(o) : o == q.removeFirst()
+	public void emptyDequeInsert() {
+        Object o = new Object();
+        q.addLast(o);
+        assertEquals("inserted and removed Objects are not the same", q.removeLast(), o);
 	}
 
 	@Test
