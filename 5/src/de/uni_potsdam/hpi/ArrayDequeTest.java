@@ -1,12 +1,12 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 
-public class DequeTest {
+public class ArrayDequeTest {
 
 	@Before
 	public void setUp() {
 		//leere Deque
-        Deque q = new Deque();
+        ArrayDeque q = new ArrayDeque();
 		//Deque mit 7 Elementen
         
 		//volle Deque
@@ -48,7 +48,7 @@ public class DequeTest {
         int Object_count=0;
         for(int i = 0; i<6;i++)
         {
-           assertNull("object not null", q.removeFirst()); 
+           assertEquals("object not null", q.removeFirst(), o); 
         }
         asserEquals("objects not o", q.removeFirst(), o);
 	}

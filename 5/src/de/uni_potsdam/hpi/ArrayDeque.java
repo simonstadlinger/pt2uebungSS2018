@@ -1,6 +1,7 @@
+package de.uni_potsdam.hpi;
 import java.util.Arrays;
 
-public class ArrayDeque implements Deque {
+public class ArrayDeque implements Deque{
 	private int cap;
 	private int length;
 	private Object[] deque;
