@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 import org.junit.*;
-import java.lang.*;
 
 public class DequeTest {
 
