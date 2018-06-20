@@ -1,4 +1,5 @@
 package de.uni_potsdam.hpi;
+import java.lang.Math;
 
 import java.util.Arrays;
 
@@ -36,7 +37,7 @@ public class ArrayDeque implements Deque {
 	public void addFirst(Object e) throws DequeFull {
 		if (length < cap) {
 			if (length != 0) {
-				first = (first - 1) % cap;
+				first=Math.floorMod((first - 1),cap);
 			}
 			deque[first] = e;
 			length++;
@@ -48,13 +49,14 @@ public class ArrayDeque implements Deque {
 	public void addLast(Object e) throws DequeFull {
 		if (length < cap) {
 			if (length != 0) {
-				last = (last + 1) % cap;
+				last = Math.floorMod((last +1),cap);
 			}
 			deque[last] = e;
 			length++;
 		} else {
 			throw new DequeFull("Deque is full!");
 		}
+        
 	}
  
 	public Object removeFirst() throws DequeEmpty {
@@ -62,7 +64,7 @@ public class ArrayDeque implements Deque {
 			Object result = deque[first];
 			deque[first] = null;
 			if (first != last) {
-				first = (first + 1) % cap;
+				first=Math.floorMod((first + 1),cap);
 			}
 			length--;
 			return result;
@@ -76,7 +78,7 @@ public class ArrayDeque implements Deque {
 			Object result = deque[last];
 			deque[last] = null;
 			if (last != first) {
-				last = (last - 1) % cap;
+				last = Math.floorMod((last -1),cap);
 			}
 			length--;
 			return result;

@@ -1,26 +1,26 @@
-package de.uni_potsdam.hpi;
-import static org.junit.Assert.*;
-import org.junit.*;
+    package de.uni_potsdam.hpi;
+    import static org.junit.Assert.*;
+    import org.junit.*;
 
-public class ArrayDequeTest {
-    ArrayDeque emptyDeque;
-    ArrayDeque sevenDeque;
-    ArrayDeque fullDeque;
-	@Before
-	public void setUp() throws Exception {
-		//leere Deque
-        emptyDeque = new ArrayDeque(10);
-		//Deque mit 7 Elementen
-        sevenDeque = new ArrayDeque(10);
-        for(int i = 0; i<7;i++)
-        {
-            sevenDeque.addLast(new Object());
-        }
-		//volle Deque
-        fullDeque = new ArrayDeque(2);
-        for(int i = 0; i<2;i++)
-        {
-            fullDeque.addLast(new Object());
+    public class ArrayDequeTest extends DequeTest{
+        ArrayDeque emptyDeque;
+        ArrayDeque sevenDeque;
+        ArrayDeque fullDeque;
+        @Before
+        public void setUp() throws Exception {
+            //leere Deque
+            emptyDeque = new ArrayDeque(10);
+            //Deque mit 7 Elementen
+            sevenDeque = new ArrayDeque(10);
+            for(int i = 0; i<7;i++)
+            {
+                sevenDeque.addLast(new Object());
+            }
+            //volle Deque
+            fullDeque = new ArrayDeque(2);
+            for(int i = 0; i<2;i++)
+            {
+                fullDeque.addLast(new Object());
         }
 	}
 
@@ -55,14 +55,14 @@ public class ArrayDequeTest {
             emptyDeque.addLast(null);
         }
         Object o = new Object();
+
         emptyDeque.addLast(o);
-        int null_count=0;
-        int Object_count=0;
         for(int i = 0; i<6;i++)
         {
-           assertEquals("object not null", emptyDeque.removeFirst(), o); 
+           assertEquals("object not null", null, emptyDeque.removeFirst());
         }
-        assertEquals("objects not o", emptyDeque.removeFirst(), o);
+
+        assertEquals("objects not o", o, emptyDeque.removeFirst());
 	}
 
 

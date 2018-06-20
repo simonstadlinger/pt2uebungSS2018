@@ -3,7 +3,7 @@ package de.uni_potsdam.hpi;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-public class LinkedDequeTest {
+public class LinkedDequeTest extends DequeTest {
 	LinkedDeque emptyDeque;
 	LinkedDeque sevenDeque;
 	LinkedDeque fullDeque;
@@ -57,19 +57,18 @@ public class LinkedDequeTest {
         }
         Object o = new Object();
         emptyDeque.addLast(o);
-        int null_count=0;
-        int Object_count=0;
         for(int i = 0; i<6;i++)
         {
            assertNull("object not null", emptyDeque.removeFirst()); 
         }
-        assertEquals("objects not o", emptyDeque.removeFirst(), o);
+        assertEquals("objects not o", o, emptyDeque.removeFirst());
 	}
 
 
 	@Test
 	public void testE() throws Exception{
 		//Nach Aufruf von clear liefert size den Wert 0.
+        
         fullDeque.clear();
         assertEquals("Deque not empty after clear()", (long) 0, (long) fullDeque.size(), (long) 0);
 	}
@@ -77,7 +76,7 @@ public class LinkedDequeTest {
 	@Test
 	public void testF() {
 		//removeLast liefert für eine leere Deque eine Ausnahme.
-
+    
         try{
             emptyDeque.removeFirst();
             fail("removeFirst() did not trow exception");

@@ -42,28 +42,43 @@ public class LinkedDeque implements Deque {
 	}
 
 	public void addFirst(Object e) throws DequeFull {
-		if (length < cap) {
-			first = new Item(e, first, null);
-			first.next.prev = first;
-			length++;
-		} else {
-			throw new DequeFull("Deque is full!");
-		}
+        if (length == 0){
+            first = new Item(e, null, null);
+            last = first;
+            length++;
+        }
+        else{
+		    if (length < cap) {
+		    	first = new Item(e, first, null);
+		    	first.next.prev = first;
+	    		length++;
+	    	} else {
+	    		throw new DequeFull("Deque is full!");
+	    	}
+        }
 	}
 
 	public void addLast(Object e) throws DequeFull {
-		if (length < cap) {
-			last = new Item(e, null, last);
-			last.prev.next = last;
-			length++;
-		} else {
-			throw new DequeFull("Deque is full!");
-		}
+        if (length == 0){
+            last = new Item(e, null, null);
+            first = last;
+            length++;
+        }
+        else{
+		    if (length < cap) {
+		    	last = new Item(e, null, last);
+			    last.prev.next = last;
+			    length++;
+		    } else {
+		    	throw new DequeFull("Deque is full!");
+		    }
+        }
+
 	}
  
 	public Object removeFirst() throws DequeEmpty {
 		if (length > 0) {
-			Object result = first.val;
+            Object result = first.val;
 			first = first.next;
 			if (first != null) {
 				first.prev = null;
