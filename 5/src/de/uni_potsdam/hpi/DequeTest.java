@@ -3,39 +3,87 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 public abstract class DequeTest {
-
+	Deque emptyDeque;
+	Deque sevenDeque;
+	Deque fullDeque;
 	@Before
 	public abstract void setUp() throws Exception;
 		//leere Deque
 		//Deque mit 7 Elementen
 		//volle Deque
+	
 	@Test
-	public abstract void TestA()throws Exception;
+	public void TestA() throws Exception{
+        Object o = new Object();
+        emptyDeque.addLast(o);
+        assertEquals("inserted and removed Objects are not the same - empty Deque", emptyDeque.removeFirst(), o);
+	}
 
 	@Test
-	public abstract void TestB()throws Exception;
+	public void TestB() throws Exception{
 		//Fügt man in eine Deque mit 7 Elementen eines mit addLast ein, erhält man es mit removeLast sofort zurück.
+        Object o = new Object();
+        sevenDeque.addLast(o);
+        assertEquals("inserted last and removed Objects last are not the same - seven element Deque", sevenDeque.removeLast(), o);
+	}
+
 	@Test
-	public abstract void TestC()throws Exception;
+	public void TestC() throws Exception{
 		//Fügt man in eine Deque mit 7 Elementen eines mit addFirst ein, erhält man es mit removeFirst sofort zurück.
+        Object o = new Object();
+        sevenDeque.addFirst(o);
+        assertEquals("inserted first and removed first Objects are not the same - seven element Deque", sevenDeque.removeFirst(), o);
+    }
+
 	@Test
-	public abstract void TestD()throws Exception;
+	public void TestD() throws Exception{
 		//Fügt man in eine Deque 6 mal den Wert null ein und danach ein von null verschiedenes Objekt o , und führt danach wiederholt removeFirst aus, so erhält man 6 mal den Wert null , und danach o .
+        for(int i = 0; i<6;i++)
+        {
+            emptyDeque.addLast(null);
+        }
+        Object o = new Object();
 
+        emptyDeque.addLast(o);
+        for(int i = 0; i<6;i++)
+        {
+           assertEquals("object not null", null, emptyDeque.removeFirst());
+        }
+
+        assertEquals("objects not o", o, emptyDeque.removeFirst());
+	}
 
 	@Test
-	public abstract void testE()throws Exception;
+	public void testE() throws Exception{
 		//Nach Aufruf von clear liefert size den Wert 0.
+        fullDeque.clear();
+        assertEquals("Deque not empty after clear()", (long) 0, (long) fullDeque.size(), (long) 0);
+	}
 
 	@Test
-	public abstract void testF()throws Exception;
+	public void testF() throws Exception{
 		//removeLast liefert für eine leere Deque eine Ausnahme.
 
+        try{
+            emptyDeque.removeFirst();
+            fail("removeFirst() did not trow exception");
+        }catch (DequeEmpty e){}
+	}
+
 	@Test
-	public abstract void TestG()throws Exception;
+	public void TestG() {
 		//addFirst liefert für eine volle Deque eine Ausnahme.
+        try{
+            fullDeque.addFirst(new Object());
+            fail("addFirst() did not trow exception");
+        }catch (DequeFull e){}
+	}
 
 	@After
-	public abstract void tearDown()throws Exception;
+	public void tearDown()throws Exception{
 		//removes all objects
+		emptyDeque = null;
+		sevenDeque = null;
+		fullDeque  = null;
+	}
 }

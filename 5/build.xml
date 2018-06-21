@@ -5,6 +5,9 @@
   <target name="init">
     <mkdir dir="${destdir}" />
   </target>
+
+  <target name="all" depends="compile">
+  </target>
   
   <target name="compile" depends="init">
     <javac srcdir="${srcdir}" includeantruntime="true" destdir="${destdir}" />
