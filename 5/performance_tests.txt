@@ -1,0 +1,22 @@
+== Umgebung == 
+- CPU: Intell i7-6500U @ 3.100GHz
+- Memory: 7764MiB
+- OS: Ubuntu 16.04.4 LTS  x86_64
+- Java-Version: openJDK version "1.8.0_171"
+==============
+
+== ArrayDeque Performance ==
+- Einfügeprozesse: 100000000
+- Methode: system.nanoTime()
+- Ergebnis:  2267 Milliseconds
+============================
+
+== LinkedDeque Performance ==
+- Einfügeprozesse: 100000000
+- Methode: system.nanoTime()
+- Ergebnis:  915 Milliseconds
+=============================
+
+== Diskussion ==
+- LinkedDeque ist schneller lol!
+===============

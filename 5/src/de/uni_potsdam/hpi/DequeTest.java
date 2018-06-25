@@ -65,19 +65,50 @@ public abstract class DequeTest {
 		//removeLast liefert für eine leere Deque eine Ausnahme.
 
         try{
-            emptyDeque.removeFirst();
-            fail("removeFirst() did not trow exception");
+            emptyDeque.removeLast();
+            fail("removeFirst() did not throw exception");
         }catch (DequeEmpty e){}
 	}
 
 	@Test
-	public void TestG() {
+	public void TestG() throws Exception {
 		//addFirst liefert für eine volle Deque eine Ausnahme.
         try{
             fullDeque.addFirst(new Object());
-            fail("addFirst() did not trow exception");
+            fail("addFirst() did not throw exception");
         }catch (DequeFull e){}
 	}
+    //Tests, die nach der Code-Coverage Prüfung eingefügt wurden.
+    @Test 
+    public void TestH(){
+        //capacity of emptyDeque liefert 10;
+        assertEquals("capacity of konstructor and capacity() not equal", (long) 10, emptyDeque.capacity());
+    }        
+    @Test
+    public void TestI() throws Exception{
+        //addLast liefert für eine volle Deque eine Ausnahme.
+        try{
+            fullDeque.addLast(new Object());
+            fail("addLast() did not throw exception");
+        }catch (DequeFull e){}
+    }
+    @Test
+	public void testJ() throws Exception{
+		//removeFirst liefert für eine leere Deque eine Ausnahme.
+
+        try{
+            emptyDeque.removeFirst();
+            fail("removeFirst() did not throw exception");
+        }catch (DequeEmpty e){}
+	}
+
+    @Test 
+    public void testK() throws Exception{
+        Object e = new Object();
+        emptyDeque.addFirst(e);
+        assertEquals("emptyDeque after insert length is not 1", (long) 1, emptyDeque.size());
+    }
+
 
 	@After
 	public void tearDown()throws Exception{
@@ -87,3 +118,4 @@ public abstract class DequeTest {
 		fullDeque  = null;
 	}
 }
+

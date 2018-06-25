@@ -41,8 +41,8 @@ public class DequePerformance {
 		long arrayEnd    = System.nanoTime();
 
 		System.out.println("N = " + N);
-		System.out.println("ArrayDeque:  " + (arrayEnd - arrayStart));
-		System.out.println("LinkedDeque: " + (linkedEnd - linkedStart));
+		System.out.println("ArrayDeque:  " + (arrayEnd - arrayStart)/1000000 + " millisec");
+		System.out.println("LinkmdDeque: " + (linkedEnd - linkedStart)/1000000 + " millisec");
 			
 
 	}
