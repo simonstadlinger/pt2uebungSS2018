@@ -1,22 +1,23 @@
-== Umgebung == 
-- CPU: Intell i7-6500U @ 3.100GHz
-- Memory: 7764MiB
-- OS: Ubuntu 16.04.4 LTS  x86_64
-- Java-Version: openJDK version "1.8.0_171"
-==============
+============================== PerformanceTest ==============================
+Implementation	ArrayDeque	ArrayDeque	LinkedDeque	LinkedDeque
+N		100.000.000	1.000.000.000	100.000.000	1.000.000.000
+Test 1		1991		19994		1636		21465
+Test 2		1985		21159		1578		20969
+Test 3		2003		20288		1581		21625
+Test 4		1989		20418		1551		21707
+Test 5		1985		20416		1598		21778
+Test 6		1998		20305		1632		21821
+Test 7		1988		20317		1558		21667
+Test 8		1998		20427		1602		21587
+Test 9		1999		20232		1590		21630
+Test 10		2010		20153		1668		21523
+Average		1994,6		20370,9		1599,4		21577,2
+=============================================================================
 
-== ArrayDeque Performance ==
-- Einfügeprozesse: 100000000
-- Methode: system.nanoTime()
-- Ergebnis:  2267 Milliseconds
-============================
-
-== LinkedDeque Performance ==
-- Einfügeprozesse: 100000000
-- Methode: system.nanoTime()
-- Ergebnis:  915 Milliseconds
-=============================
-
-== Diskussion ==
-- LinkedDeque ist schneller lol!
-===============
+================================= Diskussion ================================
+Bei 100.000.000 Einfügeoperationen ist die LinkedDeque schneller als die ArrayDeque.
+Erwartet hätten wir, dass die LinkedDeque langsamer ist, da hier zwei Operationen
+nötig sind um ein Objekt einzufügen, da in beide Richtungen verlinkt wird. Dies war
+bei 1.000.000.000 Einfügeoperationen dann der Fall. Dies könnte auf den Garbage 
+Collector zurückzuführen sein, der die ganzen entfernten Objekte freigeben muss.
+=============================================================================
