@@ -70,7 +70,7 @@ public class LinkedDeque implements Deque {
 			    last.prev.next = last;
 			    length++;
 		    } else {
-		    	throw new DequeFull("Deque is full!");
+		    	throw new DequeFull();
 		    }
         }
 
@@ -100,7 +100,7 @@ public class LinkedDeque implements Deque {
 			length--;
 			return result;
 		} else {
-			throw new DequeEmpty("Deque is empty!");
+			throw new DequeEmpty();
 		}
 	}
 

@@ -1,101 +1,28 @@
-<project name="Deque" default="all" basedir=".">
-	<property file="build.properties" />
+<project name="Deque" default="all">
+  <property name="srcdir" location="src" />
+  <property name="destdir" location="build" />
 
-	<path id="cobertura.classpath">
-		<fileset dir="${cobertura.dir}">
-			<include name="cobertura*.jar" />
-			<include name="lib/**/*.jar" />
-		</fileset>
-	</path>
+  <target name="init">
+    <mkdir dir="${destdir}" />
+  </target>
 
-	<taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
+  <target name="all" depends="compile">
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac srcdir="${srcdir}" includeantruntime="true" destdir="${destdir}" />
+  </target>
 
-	<target name="init">
-		<mkdir dir="${classes.dir}" />
-		<mkdir dir="${instrumented.dir}" />
-		<mkdir dir="${reports.xml.dir}" />
-		<mkdir dir="${reports.html.dir}" />
-		<mkdir dir="${coverage.xml.dir}" />
-		<mkdir dir="${coverage.summaryxml.dir}" />
-		<mkdir dir="${coverage.html.dir}" />
-	</target>
+  <target name="test" depends="compile">
+    <junit haltonfailure="yes">
+      <classpath path="${destdir}" />
+      <formatter type="brief" usefile="false" />
+      <test name="de.uni_potsdam.hpi.ArrayDequeTest" />
+      <test name="de.uni_potsdam.hpi.LinkedDequeTest" />
+    </junit>
+  </target>
 
-	<target name="compile" depends="init">
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="yes">
-			<classpath refid="cobertura.classpath" />
-		</javac>
-	</target>
-
-	<target name="instrument" depends="init,compile">
-		<delete file="cobertura.ser"/>
-		<delete dir="${instrumented.dir}" />
-
-		<cobertura-instrument todir="${instrumented.dir}">
-			<!--
-				The following line causes instrument to ignore any
-				source line containing a reference to slf4j/logback, for the
-				purposes of coverage reporting.
-			-->
-			<ignore regex="org.slf4j.*" />
-
-			<fileset dir="${classes.dir}">
-				<include name="**/*.class" />
-				<exclude name="**/*Test.class" />
-				<exclude name="DequePerformance.class" />
-			</fileset>
-		</cobertura-instrument>
-	</target>
-
-	<target name="test" depends="init,compile">
-		<junit haltonfailure="yes" fork="yes" dir="${basedir}" failureProperty="test.failed">
-			<classpath location="${instrumented.dir}" />
-			<classpath location="${classes.dir}" />
-			<classpath refid="cobertura.classpath" />
-
-			<formatter type="xml"/>
-	 		<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
-            <!-- <test name="de.uni_potsdam.hpi.ArrayDequeTest" todir="${reports.xml.dir}" if="testcase" />i-->
-			<batchtest todir="${reports.xml.dir}" unless="testcase">
-				<fileset dir="${src.dir}">
-					<include name="**/*Test.java" />
-                    <exclude name="**/DequeTest.java"/>
-				</fileset>
-			</batchtest>
-		</junit>
-
-		<junitreport todir="${reports.xml.dir}">
-			<fileset dir="${reports.xml.dir}">
-				<include name="TEST-*.xml" />
-			</fileset>
-			<report format="frames" todir="${reports.html.dir}" />
-		</junitreport>
-	</target>
-
-	<target name="coverage-check">
-		<cobertura-check branchrate="34" totallinerate="100" />
-	</target>
-
-	<target name="coverage-report">
-		<cobertura-report srcdir="${src.dir}" destdir="${coverage.xml.dir}" format="xml" />
-	</target>
-
-    <target name="alternate-coverage-report">
-        <cobertura-report destdir="${coverage.html.dir}">
-           <fileset dir="${src.dir}">
-               <include name="**/*.java"/>
-           </fileset>
-        </cobertura-report>
-    </target>
-
-
-    <target name="clean" description="Remove all files created by the build/test process.">
-       <delete dir="${classes.dir}" />
-       <delete dir="${instrumented.dir}" />
-       <delete dir="${reports.dir}" />
-       <delete file="cobertura.log" />
-       <delete file="cobertura.ser" />
-    </target>
-
-	<target name="all" depends="compile,instrument,test,coverage-report, alternate-coverage-report"/>
-
+  <target name="clean">
+    <delete dir="${destdir}" />
+  </target>
 </project>
