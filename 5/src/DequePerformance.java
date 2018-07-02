@@ -3,7 +3,7 @@ import de.uni_potsdam.hpi.*;
 public class DequePerformance {
 	public DequePerformance() {}
 
-	static final int N = 1000000000;
+	static final int N = 100000000;
 
 	public static void main(String[] args) {
 		LinkedDeque linked = new LinkedDeque(1000);
