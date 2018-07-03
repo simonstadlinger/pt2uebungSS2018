@@ -3,24 +3,25 @@ import java.lang.*;
 
 public class StableQuickSortableList{// implements Comparable<Object>{
 
-    private item first;
-    private item last;
+    private Item first;
+    private Item last;
     private int length;
 
-    private class item implements Comparable<item>{
-        public item next;
-        public item prev;
-        public Object val;
+    private class Item implements {
+        public Item next;
+        public Item prev;
+        public Comparable val;
 
-        public item(Object e, item n, item p) 
+        public Item(Object e, Item n, Item p) 
         {
             next = n;
             prev = p;
             val = e;
         }
 
-        public int comparTo(item e)
+        public int compareTo(Item e)
         {
+            return val.comparTo(e.val);
         }
 
         public void print()
@@ -42,7 +43,7 @@ public class StableQuickSortableList{// implements Comparable<Object>{
         
     }
     
-    public int getLenth()
+    public int getLength()
     {
         return length;
     }
@@ -51,13 +52,13 @@ public class StableQuickSortableList{// implements Comparable<Object>{
     {
         if(length==0)
         {
-            first = new item(e, null, null);
+            first = new Item(e, null, null);
             last = first;
             length++;
         }
         else
         {
-            last = new item(e, null, last);
+            last = new Item(e, null, last);
             last.prev.next = last;
             length++;
         }
@@ -71,7 +72,7 @@ public class StableQuickSortableList{// implements Comparable<Object>{
         }
     }
     
-    private void partListSort(Object pivot, item left, item right)
+    private void partListSort(Object pivot, Item left, Item right)
     {
         if(left.compareTo(right)==0)
         {
@@ -82,7 +83,7 @@ public class StableQuickSortableList{// implements Comparable<Object>{
     public void QuickSort()
     {
         Object pivot = last.val; 
-        item leftIndex = first;
-        item rightIndex = last.prev;
+        Item leftIndex = first;
+        Item rightIndex = last.prev;
     }
 }
