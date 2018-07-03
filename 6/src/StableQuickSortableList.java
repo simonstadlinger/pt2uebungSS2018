@@ -3,25 +3,25 @@ import java.lang.*;
 
 public class StableQuickSortableList{
 
-    private item first;
-    private item last;
+    private Item first;
+    private Item last;
     private int length;
 
-    private class item{
-        public item next;
-        public item prev;
-        public Object val;
+    private class Item {
+        public Item next;
+        public Item prev;
+        public Comparable val;
 
-        public item(Object e, item n, item p) 
+        public Item(Comparable e, Item n, Item p) 
         {
             next = n;
             prev = p;
             val = e;
         }
-        
-        public int comparTo(item e)
+
+        public int compareTo(Item e)
         {
-            
+            return val.compareTo(e.val);
         }
 
         public void print()
@@ -43,22 +43,22 @@ public class StableQuickSortableList{
         
     }
     
-    public int getLenth()
+    public int getLength()
     {
         return length;
     }
 
-    public void addLast(Object e)
+    public void addLast(Comparable e)
     {
         if(length==0)
         {
-            first = new item(e, null, null);
+            first = new Item(e, null, null);
             last = first;
             length++;
         }
         else
         {
-            last = new item(e, null, last);
+            last = new Item(e, null, last);
             last.prev.next = last;
             length++;
         }
@@ -72,7 +72,7 @@ public class StableQuickSortableList{
         }
     }
     
-    private void partListSort(Object pivot, item left, item right)
+    private void partListSort(Object pivot, Item left, Item right)
     {
 
 
@@ -80,7 +80,6 @@ public class StableQuickSortableList{
 
     public void QuickSort()
     {
-        partListSort(last.val, first, last.pref)
-        
+
     }
 }
