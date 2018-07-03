@@ -9,10 +9,10 @@ public class SortStdin
         for(String i: args)
         {
             System.out.print(i+" "); 
-            int value = Integer.parseInt(i);
+            Integer value = Integer.parseInt(i);
             list.addLast(value); 
         }
-        
+        list.sort();
         list.print();
     }
 }
