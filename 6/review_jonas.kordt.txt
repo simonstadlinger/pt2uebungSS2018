@@ -1,0 +1,35 @@
+-------------------------------------------------
+-------------------Code-Review-------------------
+-------------------------------------------------
+
+------------Übersetzen und Testfälle-------------
+Der Code lässt sich einwandfrei übersetzen und besteht alle definierten Testfälle.
+-------------------------------------------------
+
+---------------Verständlichkeit------------------
+Ich habe den Code verstanden. Allerdings sind Variablennamen wie s und c sehr hinderlich. size und capacity wären hier deutlich besser zu verstehen.
+-------------------------------------------------
+
+---------------Codekonventionen------------------
+Die Codekonventionen sind, soweit ich das beurteilen kann, eingehalten.
+-------------------------------------------------
+
+------------------Kommentare---------------------
+Im Code fehlen jegliche Kommentare. Nit Kommentaren wäre er sicherlich einfacher zu verstehen gewesen.
+-------------------------------------------------
+
+-----------------Spezifikation-------------------
+Die Spezifikation wird bis auf einen Fall erfüllt. Problematisch ist bei der ArrayDeque der Fall, in dem last == c-1 gilt. Wenn nun mit addLast() ein Objekt hinzugefügt wird. Wenn auch s > 0 gilt, greift die zweite if-Bedingung und last wird um eins inkrementiert. Nun gilt last == c. Wird nun removeLast() aufgerufen, wird q[c] abgerufen. q geht aber nur von 0 bis c-1. 
+-------------------------------------------------
+
+-------------------Annahmen----------------------
+Der Code trifft keine nicht-verallgemeinerbare Annahmen.
+-------------------------------------------------
+
+------------------Fehlerfälle--------------------
+Fehlerfälle werden korrekt berücksichtigt.
+-------------------------------------------------
+
+-------Redundanz und Unverständlichkeit----------
+Der Code ist nicht redundant. Bis auf die ungünstig gewählten Variablennamen ist der code nicht unverständlich.
+-------------------------------------------------
