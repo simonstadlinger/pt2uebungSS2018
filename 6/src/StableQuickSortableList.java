@@ -7,7 +7,7 @@ public class StableQuickSortableList{// implements Comparable<Object>{
     private item last;
     private int length;
 
-    private class item{
+    private class item implements Comparable<item>{
         public item next;
         public item prev;
         public Object val;
@@ -17,6 +17,10 @@ public class StableQuickSortableList{// implements Comparable<Object>{
             next = n;
             prev = p;
             val = e;
+        }
+
+        public int comparTo(item e)
+        {
         }
 
         public void print()
