@@ -1,13 +1,13 @@
 import java.lang.*;
 
 
-public class StableQuickSortableList{// implements Comparable<Object>{
+public class StableQuickSortableList{
 
     private item first;
     private item last;
     private int length;
 
-    private class item implements Comparable<item>{
+    private class item{
         public item next;
         public item prev;
         public Object val;
@@ -18,9 +18,10 @@ public class StableQuickSortableList{// implements Comparable<Object>{
             prev = p;
             val = e;
         }
-
+        
         public int comparTo(item e)
         {
+            
         }
 
         public void print()
@@ -73,16 +74,13 @@ public class StableQuickSortableList{// implements Comparable<Object>{
     
     private void partListSort(Object pivot, item left, item right)
     {
-        if(left.compareTo(right)==0)
-        {
 
-        }
+
     }
 
     public void QuickSort()
     {
-        Object pivot = last.val; 
-        item leftIndex = first;
-        item rightIndex = last.prev;
+        partListSort(last.val, first, last.pref)
+        
     }
 }
