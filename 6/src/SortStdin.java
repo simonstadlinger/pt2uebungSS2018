@@ -17,13 +17,14 @@ public class SortStdin
                 if("q".equals(input)){
                     System.exit(0);
                 }
-            list.addLast(input);
+            list.addLast(Integer.parseInt(input));
             }
         } 
         catch(IOException e){
            e.printStackTrace(); 
         }
-        //list.sort(); 
+        list.print();
+        list.sort(); 
         list.print();
     }
 }

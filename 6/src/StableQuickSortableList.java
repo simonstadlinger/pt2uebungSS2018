@@ -3,8 +3,8 @@ import java.lang.*;
 
 public class StableQuickSortableList{
 
-    private Item first;
-    private Item last;
+    public Item first;
+    public Item last;
     private int length;
 
     private class Item {
@@ -21,16 +21,19 @@ public class StableQuickSortableList{
 
         public int compareTo(Item e)
         {
+            System.out.println("comparing " + val + " to " + e.val + ": " + val.compareTo(e.val));
             return val.compareTo(e.val);
         }
 
         public void print()
         {
-            System.out.print(val+" ");
+            System.out.print(val + " ");
             if(next!=null)
             {
                 next.print();
-            } 
+            } else {
+                System.out.println("");
+            }
         }
         
     }
@@ -72,76 +75,112 @@ public class StableQuickSortableList{
         }
     }
 
-    private void exchange(Item a, Item b) {
-        if (a.prev != null) {
-            a.prev.next = b;
+    public void exchange(Item a, Item b) {
+        if (a.prev == b) {
+            if (b.prev != null) {
+                b.prev.next = a;
+            }
+            if (a.next != null) {
+                a.next.prev = b;
+            }
+
+            b.next = a.next;
+            a.next = b;
+            a.prev = b.prev;
+            b.prev = a;
+        } else if (a.next == b) {
+            if (a.prev != null) {
+                a.prev.next = b;
+            }
+            if (b.next != null) {
+                b.next.prev = a;
+            }
+            
+            b.prev = a.prev;
+            a.prev = b;
+            a.next = b.next;
+            b.next = a;
+        } else {
+            if (a.prev != null) {
+                a.prev.next = b;
+            }
+            if (a.next != null) {
+                a.next.prev = b;
+            }
+            if (b.prev != null) {
+                b.prev.next = a;
+            }
+            if (b.next != null) {
+                b.next.prev = a;
+            }
+
+
+            Item temp_next = a.next;
+            Item temp_prev = a.prev;
+            a.prev = b.prev;
+            a.next = b.next;
+            b.prev = temp_prev;
+            b.next = temp_next;
         }
-        if (a.next != null) {
-            a.next.prev = b;
+        if (a == first) {
+            System.out.println("fa");
+            first = b;
+        } else if (b == first) {
+            System.out.println("fb");
+            first = a;
         }
-        if (b.prev != null) {
-            b.prev.next = a;
+        if (a == last) {
+            last = b;
+        } else if (b == last) {
+            last = a;
         }
-        if (b.next != null) {
-            b.next.prev = a;
-        }
-        
-        Item temp_prev = a.prev;
-        Item temp_next = a.next;
-        a.next = b.next;
-        a.prev = b.prev;
-        b.next = temp_next;
-        b.prev = temp_prev;
+
+        print();
+        System.out.println("first: " + first.val);
     }
 
-    private void compareExchange(Item a, Item b) {
-        if (b.compareTo(a) < 0) {
-            exchange(a,b);
-        }
-    }
-    
     public void sort() {
         quickSort(first, last);
     }
 
-    private void quickSort(Item left, Item right)
-    {
-        System.out.println("Hi");
-        if (left == right || left.prev == right) {
+    private void quickSort(Item left, Item right) {
+        if (left == right) {
             return;
         }
-        Item pivot = partition(left, right);
-        quickSort(left, pivot.prev);
-        quickSort(pivot.next, right);
-    }
-
-    private Item partition(Item left, Item right) {
-        System.out.println("part");
-        Item a = left;
-        Item b = right.prev;
-        Item v = right;
-        boolean r = true;
-        for(;;) {
-            System.out.println("for");
-            System.out.println(a.val + " " + v.val);
-            while(a.compareTo(v) <= 0) {
-                System.out.println("w1");
-                a = a.next;
+        Item pivot = right;
+        Item shift = left;
+        StableQuickSortableList less = new StableQuickSortableList();
+        StableQuickSortableList greater = new StableQuickSortableList();
+        while(shift != pivot) {
+            if (shift.compareTo(pivot) <= 0) {
+                less.addLast(shift.val);
+            } else {
+                greater.addLast(shift.val);
             }
-            System.out.println(v.val + " " + b.val);
-            while(v.compareTo(b) <= 0) {
-                System.out.println("w2");
-                b = b.prev;
-                if (b == left) {
-                    break;
-                }
-            }
-            if (a == b || a.prev == b) {
-                break;
-            }
-            exchange(a,b);
+            shift = shift.next;
         }
-        exchange(a,right);
-        return a;
+
+        less.sort();
+        greater.sort();
+
+        if (less.first != null) {
+            first = less.first;
+        } else {
+            first = pivot;
+        }
+        if (greater.last != null) {
+            last = greater.last;
+        } else {
+            last = pivot;
+        }
+        if (less.last != null) {
+            less.last.next = pivot;
+        }
+        pivot.prev = less.last;
+        pivot.next = greater.first;
+        if (greater.first != null) {
+            greater.first.prev = pivot;
+        }
+        return;
     }
 }
