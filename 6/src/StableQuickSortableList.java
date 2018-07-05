@@ -12,23 +12,19 @@ public class StableQuickSortableList{
         public Item prev;
         public Comparable val;
 
-        public Item(Comparable e, Item n, Item p) 
-        {
+        public Item(Comparable e, Item n, Item p) {
             next = n;
             prev = p;
             val = e;
         }
 
-        public int compareTo(Item e)
-        {
+        public int compareTo(Item e) {
             return val.compareTo(e.val);
         }
 
-        public void print()
-        {
+        public void print() {
             System.out.print(val + " ");
-            if(next!=null)
-            {
+            if(next!=null) {
                 next.print();
             } else {
                 System.out.println("");
@@ -37,21 +33,18 @@ public class StableQuickSortableList{
         
     }
 
-    public StableQuickSortableList()
-    {
+    public StableQuickSortableList() {
         first = null;
         last = null;
         length= 0;
         
     }
     
-    public int getLength()
-    {
+    public int getLength() {
         return length;
     }
 
-    public void addLast(Comparable e)
-    {
+    public void addLast(Comparable e) {
         if(length==0)
         {
             first = new Item(e, null, null);
@@ -66,8 +59,7 @@ public class StableQuickSortableList{
         }
     }
 
-    public void print( )
-    {
+    public void print() {
         if(first != null)
         {
             first.print();
