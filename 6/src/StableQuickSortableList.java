@@ -21,7 +21,6 @@ public class StableQuickSortableList{
 
         public int compareTo(Item e)
         {
-            System.out.println("comparing " + val + " to " + e.val + ": " + val.compareTo(e.val));
             return val.compareTo(e.val);
         }
 
@@ -134,9 +133,6 @@ public class StableQuickSortableList{
         } else if (b == last) {
             last = a;
         }
-
-        print();
-        System.out.println("first: " + first.val);
     }
 
     public void sort() {
