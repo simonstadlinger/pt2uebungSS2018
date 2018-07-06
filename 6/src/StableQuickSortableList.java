@@ -23,11 +23,9 @@ public class StableQuickSortableList{
         }
 
         public void print() {
-            System.out.print(val + " ");
+            System.out.println(val.toString());
             if(next!=null) {
                 next.print();
-            } else {
-                System.out.println("");
             }
         }
         
