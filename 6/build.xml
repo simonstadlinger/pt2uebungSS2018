@@ -1,0 +1,19 @@
+<project name="QuickSortStableList" default="all">
+  <property name="srcdir" location="src" />
+  <property name="destdir" location="build" />
+
+  <target name="init">
+    <mkdir dir="${destdir}" />
+  </target>
+
+  <target name="all" depends="clean, compile">
+  </target>
+  
+  <target name="compile" depends="init">
+    <javac srcdir="${srcdir}" includeantruntime="true" destdir="${destdir}" />
+  </target>
+
+  <target name="clean">
+    <delete dir="${destdir}" />
+  </target>
+</project>
