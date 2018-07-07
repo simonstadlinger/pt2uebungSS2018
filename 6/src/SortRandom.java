@@ -8,12 +8,12 @@ public class SortRandom{
         int[] random = new SplittableRandom().ints(j, 0, 20).parallel().toArray();
 
         for(int i: random){
-            System.out.println(i);
             Integer val = new Integer(i);
             list.addLast(val);
         }
 
         list.print();
+        System.out.println("");
         list.sort();
         list.print();
     }

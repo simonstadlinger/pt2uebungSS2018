@@ -15,7 +15,7 @@ Die Codekonventionen sind, soweit ich das beurteilen kann, eingehalten.
 -------------------------------------------------
 
 ------------------Kommentare---------------------
-Im Code fehlen jegliche Kommentare. Nit Kommentaren wäre er sicherlich einfacher zu verstehen gewesen.
+Im Code fehlen jegliche Kommentare. Mit Kommentaren wäre er sicherlich einfacher zu verstehen gewesen.
 -------------------------------------------------
 
 -----------------Spezifikation-------------------
