@@ -19,7 +19,11 @@ Im Code fehlen jegliche Kommentare. Mit Kommentaren wäre er sicherlich einfache
 -------------------------------------------------
 
 -----------------Spezifikation-------------------
+Implementierungen der Deques:
 Die Spezifikation wird bis auf einen Fall erfüllt. Problematisch ist bei der ArrayDeque der Fall, in dem last == c-1 gilt. Wenn nun mit addLast() ein Objekt hinzugefügt wird. Wenn auch s > 0 gilt, greift die zweite if-Bedingung und last wird um eins inkrementiert. Nun gilt last == c. Wird nun removeLast() aufgerufen, wird q[c] abgerufen. q geht aber nur von 0 bis c-1. 
+
+Performance Test:
+300 mal etwas hinzuzufügen und zu entfernen ist nicht gerade oft. Wirklich interessant wird es erst bei 100.000.000 und 1.000.000.000.
 -------------------------------------------------
 
 -------------------Annahmen----------------------
